@@ -1,0 +1,129 @@
+.library {
+  height: calc(100% - 40px);
+}
+.status {
+  height: 20px;
+  line-height: 20px;
+}
+.games {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  overflow-y: hidden;
+  .games-list {
+    width: 225px;
+    overflow-y: auto;
+    height: 0;
+    min-height: 100%;
+    .game-card {
+      cursor: pointer;
+      position: relative;
+      width: 100%;
+      .game-logo {
+
+      }
+      &:hover {
+        .card-title {
+          opacity: 1;
+        }
+      }
+      .card-title {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        width: 185px;
+        background-color: rgba(0,0,0, 0.7);
+        box-sizing: border-box;
+        opacity: 0;
+        transition: all .3s;
+        .game-icon {
+          margin-right: 5px;
+        }
+        .game-name {
+          color: #fff;
+          padding: 5px 3px;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+  .game-descr {
+    width: 100%;
+    max-width: 100%;
+    overflow-y: hidden;
+    height: 0;
+    min-height: 100%;
+    .game-info {
+      background-repeat: no-repeat;
+      background-position: top center;
+      height: 100%;
+      .game-media {
+        width: 50%;
+        box-sizing: border-box;
+        padding: 0 10px 10px;
+        float: left;
+        clear: left;
+        .screenshots {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          flex-wrap: wrap;
+          .screenshot {
+            width: 33%;
+            max-width: 100%;
+            box-sizing: border-box;
+            padding: 5px;
+            img {
+              width: 100%;
+              max-width: 100%;
+            }
+          }
+        }
+        .movie {
+          max-width: 100%;
+          video {
+            max-width: 100%;
+            width: 100%;
+          }
+        }
+      }
+      .game-main-info {
+        float: left;
+        width: 50%;
+        box-sizing: border-box;
+        padding: 0 30px 0 10px;
+        .game-simmaries {
+          .game-title-block {
+            display: flex;
+            margin-bottom: 15px;
+            .title-image {
+              width: 50%;
+              margin-right: 0.5em;
+              img {
+                max-width: 100%;
+                width: 100%;
+                height: auto;
+              }
+            }
+            .game-header {
+              padding-left: 10px;
+              box-sizing: border-box;
+              .title {
+                font-size: 26px;
+                margin-bottom: 10px;
+              }
+            }
+          }
+        }
+        .description {
+          text-shadow: none;
+          color: rgba(0,0,0,0.8);
+          line-height: 1.5;
+          box-sizing: border-box;
+          padding: 10px;
+          background-color: rgba(255,255,255,0.9);
+        }
+      }
+    }
+  }
+}

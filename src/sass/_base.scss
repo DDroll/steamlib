@@ -1,0 +1,28 @@
+@import "reset";
+
+
+//fonts
+@font-face {
+  font-family: 'Open Sans Regular';
+  src : url('../assets/fonts/Open_Sans/OpenSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans Italic';
+  src : url('../assets/fonts/Open_Sans/OpenSans-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans Bold';
+  src : url('../assets/fonts/Open_Sans/OpenSans-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+//colors
+$steam-background : #1b2838;
+$base-font-color: rgb(184, 203, 197);
