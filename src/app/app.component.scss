@@ -1,4 +1,33 @@
+$white: rgba(255,255,255,0.6);
+$bgwhite: rgba(255,255,255,0.2);
+$gray: #282828;
+
 .header {
-  height: 20px;
+  height: 30px;
   line-height: 20px;
+  display: flex;
+  background-color: $bgwhite;
+  .logo {
+    background-color: $white;
+    padding: 5px;
+    margin: 0 10px;
+  }
+  .main-menu {
+    background-color: $bgwhite;
+    a {
+      color: $gray;
+      display: inline-block;
+      padding: 0 10px;
+      line-height: 30px;
+      text-decoration: none;
+      text-shadow: none;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.01);
+      }
+      &.active {
+        background-color: $white;
+      }
+    }
+  }
 }

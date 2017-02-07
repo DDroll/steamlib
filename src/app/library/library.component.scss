@@ -1,9 +1,11 @@
 .library {
-  height: calc(100% - 40px);
+  height: calc(100% - 60px);
 }
 .status {
-  height: 20px;
-  line-height: 20px;
+  padding: 0 10px;
+  height: 30px;
+  line-height: 30px;
+  background-color: rgba(255,255,255,0.1);;
 }
 .games {
   display: flex;
@@ -11,15 +13,29 @@
   height: 100%;
   overflow-y: hidden;
   .games-list {
-    width: 225px;
+    width: 250px;
     overflow-y: auto;
     height: 0;
     min-height: 100%;
+    text-align: center;
     .game-card {
       cursor: pointer;
       position: relative;
       width: 100%;
+      box-sizing: border-box;
+      padding: 0 52px 0 10px;
+      transition: all .2s;
+      &.chosen {
+        transform: scale(1.08);
+      }
       .game-logo {
+        display: inline-block;
+        width: 100%;
+        max-width: 100%;
+        img {
+          width: 100%;
+          max-width: 100%;
+        }
 
       }
       &:hover {
@@ -31,7 +47,7 @@
         position: absolute;
         bottom: 0;
         display: flex;
-        width: 185px;
+        width: 188px;
         background-color: rgba(0,0,0, 0.7);
         box-sizing: border-box;
         opacity: 0;
@@ -48,6 +64,10 @@
     }
   }
   .game-descr {
+    .no-game {
+      padding: 10px;
+      font-size: 18px;
+    }
     width: 100%;
     max-width: 100%;
     overflow-y: hidden;

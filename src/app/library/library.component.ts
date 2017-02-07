@@ -17,7 +17,7 @@ export class LibraryComponent implements OnInit {
   appsCache: any;
   gamesCount: number;
   gameDescr: any;
-  currentApp: string;
+  currentApp: any = {};
   slimOpts: SlimScrollOptions;
 
   constructor(private userInfo: UserInfoService, private steam: SteamService) {
@@ -29,10 +29,13 @@ export class LibraryComponent implements OnInit {
     return `http://media.steampowered.com/steamcommunity/public/images/apps/${appid}/${id}.jpg`;
   }
 
-  loadGameDescr(appid){
-    if(appid !== this.currentApp){
-      this.currentApp = appid;
-      this.gameDescr = this.appsCache[appid] || {};
+  loadGameDescr(game){
+    let appid = game.appid;
+    if(appid !== this.currentApp.appid){
+        this.currentApp.isActive = false;
+      this.currentApp = game;
+        this.currentApp.isActive = true;
+        this.gameDescr = this.appsCache[appid] || {};
       this.steam.getAppInfo(appid).subscribe((descr)=>{
           this.appsCache[appid] = JSON.parse(descr)[appid];
           this.gameDescr = this.appsCache[appid];
