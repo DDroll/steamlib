@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {UserInfoService} from "../user/user-info-service.service";
 import {SteamUserInfoInterface} from "../steam/steam-user-info-interface";
 import {SteamService} from "../steam/steam.service";
@@ -19,6 +19,8 @@ export class LibraryComponent implements OnInit {
   gameDescr: any;
   currentApp: any = {};
   slimOpts: SlimScrollOptions;
+
+  @Input() userLogout: any;
 
   constructor(private userInfo: UserInfoService, private steam: SteamService) {
       this.games = JSON.parse(localStorage.getItem('steamUserGamesList')) || [];

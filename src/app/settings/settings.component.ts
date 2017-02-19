@@ -9,7 +9,7 @@ import {SteamUserInfoInterface} from "../steam/steam-user-info-interface";
 @Component({
   selector: 'app-settings',
   templateUrl: 'settings.component.html',
-  styleUrls: ['settings.component.css']
+  styleUrls: ['settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
 

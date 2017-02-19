@@ -1,8 +1,7 @@
-<div class="library">
-    <div class="no-games" *ngIf="!hasAccount">Вы не подключили ни одного аккаунта и не загрузили ни одной игры.
-        Подключите аккаунты в
-        <a [routerLink]="['/settings']">настройках</a>
-    </div>
+<div class="no-games" *ngIf="!hasAccount">
+    Вы не подключили ни одного аккаунта и не загрузили ни одной игры. Подключите аккаунты в <a [routerLink]="['/settings']">настройках</a>
+</div>
+<div class="library" *ngIf="hasAccount">
     <div class="status">
         <div *ngIf="hasAccount && gamesCount === 0">На подключенном аккаунте нет игр</div>
         <div class="count">{{ gamesCount }}</div>
@@ -31,7 +30,7 @@
                 <div class="game-media">
                     <div class="screenshots" *ngIf="gameDescr.data.screenshots.length > 0">
                         <div class="screenshot" *ngFor="let screenshot of gameDescr.data.screenshots">
-                            <a [href]="screenshot.path_full" data-lightbox="image-1" data-title="My caption"><img
+                            <a [href]="screenshot.path_full" data-lightbox="image-1" data-title="{{gameDescr.data.name}}"><img
                                     [src]="screenshot.path_thumbnail" alt=""></a>
                         </div>
                     </div>

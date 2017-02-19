@@ -1,25 +1,38 @@
-<h1>Настройки</h1>
-<h2>Добавьте аккаунт steam</h2>
-<div class="add-steam-block" *ngIf="!hasAccount">
-  <form [formGroup]="settingsForm" (ngSubmit)="subscribeAccountForm()">
-    <label for="api-key">API-key</label>
-    <input id="api-key" type="text" formControlName="apiKey"/>
-    <label for="user-id">User id</label>
-    <input id="user-id" type="text" formControlName="userId"/>
-    <button type="submit">Проверить</button>
-    <div *ngIf="error" class="alert alert-danger">
-      {{ error }}
+<div class="settings-block">
+    <h1>Настройки</h1>
+    <div class="add-steam-block" *ngIf="!hasAccount">
+        <h2>Добавьте аккаунт steam</h2>
+        <form [formGroup]="settingsForm" (ngSubmit)="subscribeAccountForm()">
+            <div class="input-gr">
+                <label for="api-key">API-key</label>
+                <input id="api-key" type="text" formControlName="apiKey"/>
+            </div>
+            <div class="input-gr">
+                <label for="user-id">User id</label>
+                <input id="user-id" type="text" formControlName="userId"/>
+            </div>
+            <button type="submit">Проверить</button>
+            <div *ngIf="error" class="alert alert-danger">
+                {{ error }}
+            </div>
+        </form>
+        <p>Если у вас нет steam API-key, его можно получить <a target="_blank" href="https://steamcommunity.com/login/home/?goto=%2Fdev%2Fapikey">тут</a></p>
     </div>
-  </form>
-  <p>Если у вас нет steam API-key, его можно получить <a target="_blank" href="https://steamcommunity.com/login/home/?goto=%2Fdev%2Fapikey">тут</a></p>
-</div>
-<div class="user-data" *ngIf="currUser">
-  <div class="avatar">
-    <img [src]="currUser.avatarfull" [alt]="currUser.personaname" />
-    <a target="_blank" [href]="currUser.profileurl">{{currUser.personaname}}</a>
-    <div *ngIf="currUser.realname">{{ currUser.realname }}</div>
-    <button (click)="saveAccount()" *ngIf="!hasAccount">Привязать аккаунт</button>
-  </div>
-  <button (click)="deleteAccount()" *ngIf="hasAccount">Удалить</button>
-  <div class="info"></div>
+    <div class="user-data" *ngIf="currUser">
+        <div class="info-block">
+            <div class="avatar">
+                <img [src]="currUser.avatarfull" [alt]="currUser.personaname" />
+            </div>
+            <div class="info">
+                <a target="_blank" [href]="currUser.profileurl">{{currUser.personaname}}</a>
+                <div *ngIf="currUser.realname" class="user-name">{{ currUser.realname }}</div>
+                <div class="last-login" *ngIf="currUser.lastlogoff">
+                    <span>Был онлайн: </span>
+                    <span>{{currUser.lastlogoff*1000 | date: 'dd.MM.yyyy'}}</span>
+                </div>
+            </div>
+        </div>
+        <button (click)="saveAccount()" *ngIf="!hasAccount">Привязать аккаунт</button>
+        <button (click)="deleteAccount()" *ngIf="hasAccount">Удалить</button>
+    </div>
 </div>

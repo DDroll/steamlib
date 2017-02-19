@@ -1,0 +1,88 @@
+$bgwhite: rgba(255,255,255,0.2);
+$white: rgba(255,255,255,0.6);
+.settings-block {
+  box-sizing: border-box;
+  padding: 15px .5em;
+  color: $white;
+  h1 {
+    font-size: 18px;
+    margin: 15px 0;
+  }
+  h2 {
+    margin: 10px 0;
+  }
+  a {
+    color: #b8cbc5;
+  }
+  button {
+    color: $white;
+    border: none;
+    border-bottom: 1px solid $white;
+    background-color: transparent;
+    float: left;
+    clear: left;
+    font-size: 16px;
+    box-sizing: border-box;
+    padding: 2px 0.5em;
+    margin: 10px 0;
+    cursor: pointer;
+    display: inline-block;
+    &:hover {
+      color: #b8cbc5;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  .add-steam-block {
+    .input-gr {
+      float: left;
+      margin: 10px 15px 10px 0;
+    }
+    label {
+      font-size: 13px;
+    }
+    input {
+      background-color: transparent;
+      border: 0;
+      border-bottom: 2px solid $white;
+      color: $white;
+      &:focus {
+        outline: none;
+      }
+    }
+    p {
+      float: left;
+      clear: left;
+    }
+  }
+  .user-data {
+    float: left;
+    clear: left;
+    padding: 10px 0.5em;
+    margin: 10px 0;
+    background-color: $bgwhite;
+    min-width: 33%;
+    .info-block {
+      display: flex;
+      .info {
+        padding: 0 0 0 15px;
+        * {
+          margin-bottom: 10px;
+        }
+        .user-name {
+          margin: 10px 0;
+          font-size: 20px;
+        }
+      }
+    }
+    button {
+      margin: 0;
+      float: right;
+      clear: right;
+    }
+    p {
+      margin-top: 15px;
+    }
+  }
+}
