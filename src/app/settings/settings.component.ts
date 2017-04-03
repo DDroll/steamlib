@@ -3,6 +3,7 @@ import {FormGroup, FormControl} from '@angular/forms'
 import 'rxjs/Rx';
 import { SteamService } from '../steam/steam.service'
 import formatErrorMsg = jasmine.formatErrorMsg;
+import {AppService} from "../app.service";
 import {UserInfoService} from "../user/user-info-service.service";
 import {SteamUserInfoInterface} from "../steam/steam-user-info-interface";
 
@@ -20,7 +21,7 @@ export class SettingsComponent implements OnInit {
   currUser: SteamUserInfoInterface;
   hasAccount: boolean;
 
-  constructor(private steam: SteamService, private userInfo: UserInfoService) {
+  constructor(private steam: SteamService, private userInfo: UserInfoService, private notify: AppService) {
     this.settingsForm = new FormGroup({
       'apiKey': new FormControl(this.apiKey),
       'userId': new FormControl(this.userId)
@@ -62,6 +63,7 @@ export class SettingsComponent implements OnInit {
     this.userInfo.deleteUser();
     this.currUser = null;
     this.hasAccount = false;
+    this.notify.sendMsg('accDeleted');
   }
 
   ngOnInit() {

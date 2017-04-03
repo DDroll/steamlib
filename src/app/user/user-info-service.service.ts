@@ -1,11 +1,9 @@
-import {Injectable, Output, EventEmitter} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {SteamUserInfoInterface} from '../steam/steam-user-info-interface'
 import * as _ from "lodash";
 
 @Injectable()
 export class UserInfoService {
-
-    @Output() userLogout: EventEmitter <any> = new EventEmitter();
 
     currentUser: SteamUserInfoInterface;
     userIsSetted: boolean;
@@ -35,6 +33,5 @@ export class UserInfoService {
         localStorage.removeItem('steamUser');
         localStorage.removeItem('appsCache');
         localStorage.removeItem('steamUserGamesList');
-        this.userLogout.emit();
     }
 }
