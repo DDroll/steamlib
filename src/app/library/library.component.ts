@@ -1,9 +1,9 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {UserInfoService} from "../user/user-info-service.service";
-import {SteamUserInfoInterface} from "../steam/steam-user-info-interface";
-import {SteamService} from "../steam/steam.service";
+import {UserService} from '../user/user.service';
+import {SteamUserInfoInterface} from '../steam/steam.user.interface';
+import {SteamService} from '../steam/steam.service';
 import {SlimScrollOptions} from 'ng2-slimscroll';
-import {AppService} from "../app.service";
+import {AppService} from '../app.service';
 
 @Component({
     selector: 'app-library',
@@ -23,7 +23,7 @@ export class LibraryComponent implements OnInit {
 
     @Input() userLogout: any;
 
-    constructor(private userInfo: UserInfoService, private steam: SteamService, private notify: AppService) {
+    constructor(private userInfo: UserService, private steam: SteamService, private notify: AppService) {
         this.games = JSON.parse(localStorage.getItem('steamUserGamesList')) || [];
         this.appsCache = JSON.parse(localStorage.getItem('appsCache')) || {};
         notify.getMsg('accDeleted', () => {
@@ -33,7 +33,7 @@ export class LibraryComponent implements OnInit {
             this.gamesCount = 0;
             this.gameDescr = null;
             this.currentApp = {};
-        })
+        });
     }
 
     makeGameImage(appid, id) {
@@ -41,7 +41,7 @@ export class LibraryComponent implements OnInit {
     }
 
     loadGameDescr(game) {
-        let appid = game.appid;
+        const appid = game.appid;
         if (appid !== this.currentApp.appid) {
             this.currentApp.isActive = false;
             this.currentApp = game;
@@ -51,7 +51,7 @@ export class LibraryComponent implements OnInit {
                 this.appsCache[appid] = JSON.parse(descr)[appid];
                 this.gameDescr = this.appsCache[appid];
                 localStorage.setItem('appsCache', JSON.stringify(this.appsCache));
-            })
+            });
         }
     }
 
@@ -78,7 +78,8 @@ export class LibraryComponent implements OnInit {
             barBackground: '#fff',
             barOpacity: '0.5',
             gridOpacity: '0.1'
-        }
+        };
     }
 
 }
+

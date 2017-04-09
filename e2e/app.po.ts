@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class SteamlibPage {
+export class StlibMigrationPage {
   navigateTo() {
     return browser.get('/');
   }

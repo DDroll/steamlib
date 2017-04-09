@@ -1,10 +1,10 @@
-import { SteamlibPage } from './app.po';
+import { StlibMigrationPage } from './app.po';
 
-describe('steamlib App', function() {
-  let page: SteamlibPage;
+describe('stlib-migration App', () => {
+  let page: StlibMigrationPage;
 
   beforeEach(() => {
-    page = new SteamlibPage();
+    page = new StlibMigrationPage();
   });
 
   it('should display message saying app works', () => {

@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {SteamUserInfoInterface} from '../steam/steam-user-info-interface'
-import * as _ from "lodash";
+import {SteamUserInfoInterface} from '../steam/steam.user.interface';
+import * as _ from 'lodash';
 
 @Injectable()
-export class UserInfoService {
+export class UserService {
 
     currentUser: SteamUserInfoInterface;
     userIsSetted: boolean;
