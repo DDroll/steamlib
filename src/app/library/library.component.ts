@@ -2,7 +2,6 @@ import {Component, OnInit, Input} from '@angular/core';
 import {UserService} from '../user/user.service';
 import {SteamUserInfoInterface} from '../steam/steam.user.interface';
 import {SteamService} from '../steam/steam.service';
-import {SlimScrollOptions} from 'ng2-slimscroll';
 import {AppService} from '../app.service';
 
 @Component({
@@ -19,9 +18,10 @@ export class LibraryComponent implements OnInit {
     gamesCount: number;
     gameDescr: any;
     currentApp: any = {};
-    slimOpts: SlimScrollOptions;
-
-    @Input() userLogout: any;
+    gotGame: boolean = false;
+    gameError: boolean = false;
+    gameBackground: string = '';
+    config: object;
 
     constructor(private userInfo: UserService, private steam: SteamService, private notify: AppService) {
         this.games = JSON.parse(localStorage.getItem('steamUserGamesList')) || [];
@@ -41,6 +41,8 @@ export class LibraryComponent implements OnInit {
     }
 
     loadGameDescr(game) {
+        this.gotGame = false;
+        this.gameError = false;
         const appid = game.appid;
         if (appid !== this.currentApp.appid) {
             this.currentApp.isActive = false;
@@ -48,9 +50,18 @@ export class LibraryComponent implements OnInit {
             this.currentApp.isActive = true;
             this.gameDescr = this.appsCache[appid] || {};
             this.steam.getAppInfo(appid).subscribe((descr) => {
-                this.appsCache[appid] = JSON.parse(descr)[appid];
-                this.gameDescr = this.appsCache[appid];
-                localStorage.setItem('appsCache', JSON.stringify(this.appsCache));
+                let gameJSON = JSON.parse(descr)[appid];
+                this.gotGame = true;
+                if(gameJSON && gameJSON.success && gameJSON.data){
+                    this.gameBackground = gameJSON.data.background;
+                    this.gameError = false;
+                    this.appsCache[appid] = gameJSON;
+                    this.gameDescr = gameJSON;
+                    localStorage.setItem('appsCache', JSON.stringify(this.appsCache));
+                } else {
+                    this.gameBackground = '';
+                    this.gameError = true;
+                }
             });
         }
     }
@@ -73,13 +84,7 @@ export class LibraryComponent implements OnInit {
                 this.gamesCount = gamesResp.game_count;
             });
         }
-        this.slimOpts = {
-            position: 'right',
-            barBackground: '#fff',
-            barOpacity: '0.5',
-            gridOpacity: '0.1'
-        };
+        this.config = {};
     }
-
 }
 

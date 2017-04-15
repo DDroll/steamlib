@@ -4,10 +4,10 @@
 <div class="library" *ngIf="hasAccount">
     <div class="status">
         <div *ngIf="hasAccount && gamesCount === 0">На подключенном аккаунте нет игр</div>
-        <div class="count">{{ gamesCount }}</div>
+        <div>{{ gamesCount }}</div>
     </div>
     <div *ngIf="games" class="games">
-        <div class="games-list" slimScroll [options]="slimOpts">
+        <perfect-scrollbar class="games-list" [config]="config">
             <div class="game-card" *ngFor="let game of games" (click)="loadGameDescr(game)" [ngClass]="{'chosen': game.isActive}">
                 <div class="game-logo" *ngIf="game.img_logo_url">
                     <img [src]="makeGameImage(game.appid, game.img_logo_url)" [alt]="game.name">
@@ -21,12 +21,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </perfect-scrollbar>
         <div class="game-descr">
-            <div class="no-game" *ngIf="!gameDescr || !gameDescr.success && !currentApp.appid">Выберите игру в списке</div>
-            <div class="game-info" *ngIf="gameDescr && gameDescr.success"
-                 [ngStyle]="{'background-image' : 'url(' + gameDescr.data.background + ')'}" slimScroll
-                 [options]="slimOpts">
+            <div class="no-game" *ngIf="!gotGame">Выберите игру в списке</div>
+            <div class="no-game" *ngIf="gameError">Не удалось загрузить информацию об игре.</div>
+            <perfect-scrollbar class="game-info" *ngIf="(gotGame && !gameError)" [ngStyle]="{'background-image' : 'url(' + gameBackground + ')'}" [config]="config">
                 <div class="game-media">
                     <div class="screenshots" *ngIf="gameDescr.data.screenshots.length > 0">
                         <div class="screenshot" *ngFor="let screenshot of gameDescr.data.screenshots">
@@ -34,7 +33,7 @@
                                     [src]="screenshot.path_thumbnail" alt=""></a>
                         </div>
                     </div>
-                    <div class="movies">
+                    <div>
                         <div class="movie" *ngFor="let movie of gameDescr.data.movies">
                             <video [src]="movie.webm.max" controls></video>
                         </div>
@@ -48,8 +47,13 @@
                             </div>
                             <div class="game-header">
                                 <h1 class="title">{{gameDescr.data.name}}</h1>
-                                <div class="price" *ngIf="gameDescr.data.price_overview">{{gameDescr.data.price_overview.final/100 |
-                                    currency:'RUB':true}}
+                                <div class="ext-links">
+                                    <div class="ext-link">
+                                        <a href="http://store.steampowered.com/app/{{currentApp.appid}}/" target="_blank" title="Страница в Steam"><img src="../../assets/images/steam_logo_link.png" alt=""></a>
+                                    </div>
+                                    <div class="ext-link">
+                                        <a href="https://steamdb.info/app/{{currentApp.appid}}" target="_blank" title="Страница в SteamDB"><img src="../../assets/images/steam-db-logo-link.png" alt=""></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +61,7 @@
                     <div class="description" [innerHTML]="gameDescr.data.detailed_description"></div>
                 </div>
                 <!--<div class="about" [innerHTML]="gameDescr.data.about_the_game"></div>-->
-            </div>
+            </perfect-scrollbar>
         </div>
     </div>
 </div>

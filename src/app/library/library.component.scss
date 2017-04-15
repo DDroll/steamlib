@@ -13,7 +13,7 @@
   height: 100%;
   overflow-y: hidden;
   .games-list {
-    width: 250px;
+    width: 240px;
     overflow-y: auto;
     height: 0;
     min-height: 100%;
@@ -21,9 +21,8 @@
     .game-card {
       cursor: pointer;
       position: relative;
-      width: 100%;
+      width: 190px;
       box-sizing: border-box;
-      padding: 0 52px 0 10px;
       transition: all .2s;
       &.chosen {
         transform: scale(1.08);
@@ -131,6 +130,21 @@
               .title {
                 font-size: 26px;
                 margin-bottom: 10px;
+              }
+              .ext-links {
+                margin: 10px 0;
+                .ext-link {
+                  display: inline-block;
+                  margin: 5px 2px;
+                  a {
+                    color: #fff;
+                  }
+                  img {
+                    height: 30px;
+                    width: auto;
+                    margin-right: 0.5em;
+                  }
+                }
               }
             }
           }

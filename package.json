@@ -1,5 +1,5 @@
 {
-  "name": "stlib-migration",
+  "name": "steamlib",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -21,13 +21,13 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "core-js": "^2.4.1",
-    "rxjs": "^5.1.0",
-    "zone.js": "^0.8.4",
     "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",
     "lightbox2": "^2.9.0",
     "lodash": "^4.17.3",
-    "ng2-slimscroll": "git+https://github.com/DDroll/ng2-slimscroll.git"
+    "ngx-perfect-scrollbar": "^4.0.0",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
     "@angular/cli": "1.0.0",

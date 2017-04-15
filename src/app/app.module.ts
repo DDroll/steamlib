@@ -14,7 +14,11 @@ import {LibraryService} from './library/library.service';
 import {SteamService} from './steam/steam.service';
 import {UserService} from './user/user.service';
 import {AppService} from './app.service';
-import {SlimScrollModule} from 'ng2-slimscroll';
+import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+    suppressScrollX: true
+};
 
 @NgModule({
     declarations: [
@@ -32,7 +36,7 @@ import {SlimScrollModule} from 'ng2-slimscroll';
         ReactiveFormsModule,
         HttpModule,
         RouterModule,
-        SlimScrollModule,
+        PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
         routing
     ],
     providers: [AuthService, SteamService, UserService, LibraryService, AppService],
