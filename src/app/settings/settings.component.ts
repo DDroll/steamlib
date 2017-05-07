@@ -62,7 +62,11 @@ export class SettingsComponent implements OnInit {
         this.userInfo.deleteUser();
         this.currUser = null;
         this.hasAccount = false;
-        this.notify.sendMsg('accDeleted');
+        this.notify.sendMsg('accDeleted', {}, this);
+    }
+
+    sendEvent(){
+        this.notify.sendMsg('ololo',{ 'coll' : 'yep' }, this);
     }
 
     ngOnInit() {

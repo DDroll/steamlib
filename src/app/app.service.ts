@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, ComponentRef} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 
 @Injectable()
@@ -8,13 +8,14 @@ export class AppService {
 
     constructor() {}
 
-    sendMsg(message: string, data?: Object) {
+    sendMsg(message: string, data: Object, context) {
         if (this.currentObservables[message]) {
             this.currentObservables[message].next(data);
         }
     }
 
-    getMsg(message: string, callback: Function) {
+    getMsg(message: string, callback: Function, context) {
+        console.log(context);
         if (!this.currentObservables[message]) {
             this.currentObservables[message] = new Subject();
         }

@@ -33,7 +33,10 @@ export class LibraryComponent implements OnInit {
             this.gamesCount = 0;
             this.gameDescr = null;
             this.currentApp = {};
-        });
+        }, this);
+        notify.getMsg('ololo', (data) => {
+            console.log(data);
+        }, this);
     }
 
     makeGameImage(appid, id) {
